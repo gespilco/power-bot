@@ -1,0 +1,15 @@
+*.py~
+*.pyc
+*.swp
+*.~
+*.*~
+env/
+*.zip
+*.log
+*.csv
+local_settings.py
+local_database.py
+databases/
+node_modules/
+.idea/
+.vagrant
