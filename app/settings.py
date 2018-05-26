@@ -20,12 +20,14 @@ BUNDLE_ERRORS = True
 
 STAGE = 1
 FILTERS__URL = {
+    "facebook": "http://53.233.162.11:8080/Rest/users/facebook",
     "IP": "http://0.0.0.0:5000/filters/IP/",
     "UA": "http://0.0.0.0:5000/filters/UA/",
     "transaction__time": "http://0.0.0.0:5000/filters/transaction__time/",
     "mail": "http://0.0.0.0:5000/filters/mail/",
 }
 FILTERS__SCORE = {
+    "facebook": 30,
     "IP": 30,
     "UA": 20,
     "transaction__time": 40,

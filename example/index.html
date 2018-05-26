@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Compra Pack Mundialista</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+    body {
+      background-color: #004b8c;
+    }
+    h1, p.lead, footer, footer li a {
+      color: #ffffff;
+    }
+    .box-data {
+      text-align: left;
+      display: none;
+    }
+    .bcp-button {
+      background: #004b8c;
+    }
+    .bcp-image-button {
+      width: 50px;
+      height: 30px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Compra Pack Mundialista</h1>
+      <p class="lead">Por que ahora tus compras con tu tarjeta de credito son más seguras!</p>
+    </div>
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Paquete "Estoy en el Mundial"</h4>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title pricing-card-title">10 000 soles</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>entradas a 2 partidos</li>
+              <li>traslados al estadio</li>
+              <li>hotel y vuelos incluidos</li>
+            </ul>
+            <a href="#" class="btn btn-lg btn-block btn-primary box-data-button" id="show10000">Viaja ya</a>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Paquete "Super Capitán"</h4>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title pricing-card-title">18 000 soles</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>entradas a 4 partidos</li>
+              <li>traslados al estadio</li>
+              <li>hotel y vuelos incluidos</li>
+              <li>polo autografiado</li>
+            </ul>
+            <a href="#" class="btn btn-lg btn-block btn-primary box-data-button" id="show18000">Viaja ya</a>
+            <div id="show18000-content" class="box-data">
+              <form method="GET" id="show18000-form">
+                <hr>
+                <input type="hidden" id="show18000-price" name="price" value="18000" />
+                <input type="hidden" id="show18000-description" name="description" value='Paquete "Super Capitán"' />
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" name="name" class="form-control" placeholder="Indique tu nombre" />
+                  <small class="form-text text-muted">Indica tu nombre</small>
+                </div>
+                <div class="form-group">
+                  <label>Correo</label>
+                  <input type="text" name="mail" class="form-control" placeholder="Indique e-mail" />
+                  <small class="form-text text-muted">Indica tu e-mail, el que siempre revisas</small>
+                </div>
+                <button type="submit" class="btn btn-primary bcp-button">Pagar con &nbsp;<img src="https://btpucp.pucp.edu.pe/wp-content/uploads/2014/04/nuevo-logo-bcp-300x180.jpg" alt="" class="bcp-image-button"/></button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Paquete "Super Hincha"</h4>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title pricing-card-title">32 000 soles</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>entradas a todos los partidos (incluida la final, en caso Perú juegue la</li>
+              <li>traslados al estadio</li>
+              <li>hotel y vuelos incluidos</li>
+              <li>polo autografiado</li>
+              <li>fotografía con el equipo</li>
+            </ul>
+            <a href="#" class="btn btn-lg btn-block btn-primary box-data-button" id="show32000">Viaja ya</a>
+          </div>
+        </div>
+      </div>
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img class="mb-2" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+            <small class="d-block mb-3">&copy; 2017-2018</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Acerca de</h5>
+            <ul class="list-unstyled text-small">
+              <li><a href="#">La empresa</a></li>
+              <li><a href="#">El equipo</a></li>
+              <li><a href="#">Contáctanos</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Dudas</h5>
+            <ul class="list-unstyled text-small">
+              <li><a href="#">Asistencia en viaje</a></li>
+              <li><a href="#">Asistencia en hotel</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://checkout.culqi.com/plugins/v2/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.js"></script>
+    <script>
+
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+
+      Culqi.publicKey = 'pk_test_vzMuTHoueOMlgUPj';
+
+      $(document).ready(function() {
+        $(".box-data-button").click(function() {
+          $("#" + $(this).attr('id')).hide();
+          $("#" + $(this).attr('id') + "-content").show();
+          Culqi.settings({
+            title: 'HACKATRIX TRAVEL',
+            currency: 'PEN',
+            description: $("#" + $(this).attr('id') + "-description").val(),
+            amount: $("#" + $(this).attr('id') + "-price").val()
+          });
+          Culqi.open();
+          return false;
+        });
+      });
+
+      function culqi() {
+        $("#" + $(this).attr('id') + "-form").submit();
+      }
+
+    </script>
+  </body>
+</html>
