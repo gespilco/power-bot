@@ -42,7 +42,12 @@ class PingView(Resource):
 class ValidateView(Resource):    
     # QUERY:
     # - mail
+    # - validate__IP
     # - IP
+    # - validate__UA
+    # - UA
+    # - validate__transaction__time
+    # - transaction__time
     def get(self):
 
         transaction_key = "%s" % (''.join(choice(ascii_lowercase + digits) for _ in range(6)))
@@ -64,22 +69,35 @@ class ValidateView(Resource):
             pass
         IP = request.args.get('IP', '')
         buyer__country = request.args.get('buyer__country', '')
+        if validate__IP:
+            if IP == "":
+                IP = getIP(request)
+            filters = filters + 1
+            check__filter.delay(FILTERS__URL["IP"], transaction_id, "IP", {"IP": IP, "buyer__country": buyer__country})
         validate__UA = request.args.get('validate__UA', 1)
         try:
             validate__UA = int(validate__UA)
         except:
             pass
         UA = request.args.get('UA', '')
-        if validate__IP:
-            if IP == "":
-                IP = getIP(request)
-            filters = filters + 1
-            check__filter.delay(FILTERS__URL["IP"], transaction_id, "IP", {"IP": IP, "buyer__country": buyer__country})
         if validate__UA:
             if UA == "":
                 UA = getUA(request)
             filters = filters + 1
             check__filter.delay(FILTERS__URL["UA"], transaction_id, "UA", {"UA": UA})
+        validate__transaction__time = request.args.get('validate__transaction__time', 1)
+        try:
+            validate__transaction__time = int(validate__transaction__time)
+        except:
+            pass
+        transaction__time = request.args.get('transaction__time', '')
+        if validate__transaction__time:
+            try:
+                transaction__time = int(transaction__time)
+                filters = filters + 1
+                check__filter.delay(FILTERS__URL["transaction__time"], transaction_id, "transaction__time", {"transaction__time": transaction__time})
+            except:
+                pass
         table.update_one({
             'id': transaction_id
         }, {

@@ -22,10 +22,12 @@ STAGE = 1
 FILTERS__URL = {
     "IP": "http://0.0.0.0:5000/filters/IP/",
     "UA": "http://0.0.0.0:5000/filters/UA/",
+    "transaction__time": "http://0.0.0.0:5000/filters/transaction__time/",
 }
 FILTERS__SCORE = {
     "IP": 30,
     "UA": 20,
+    "transaction__time": 40,
 }
 
 
