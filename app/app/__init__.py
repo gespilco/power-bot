@@ -111,6 +111,7 @@ from .views import ValidateDetailsView
 from .views import FiltersIPView
 from .views import FiltersUAView
 from .views import FiltersTransactionTimeView
+from .views import FiltersMailView
 
 api.add_resource(MainView                  , '/')
 api.add_resource(PingView                  , '/ping/')
@@ -119,3 +120,4 @@ api.add_resource(ValidateDetailsView       , '/validate/details/')
 api.add_resource(FiltersIPView             , '/filters/IP/')
 api.add_resource(FiltersUAView             , '/filters/UA/')
 api.add_resource(FiltersTransactionTimeView, '/filters/transaction__time/')
+api.add_resource(FiltersMailView           , '/filters/mail/')

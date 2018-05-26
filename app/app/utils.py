@@ -51,14 +51,67 @@ def getUA(request):
     return UA
 
 
-
-
-##
-## To get information about a IP
-##
 geoip__database = geoip__database__open(os__path.dirname(os__path.realpath(__file__)) + '/../GeoLite2-City.mmdb')
 
 
 def geoip__information(IP):
     
     return geoip__database.lookup(IP)
+
+
+import requests
+import requests.exceptions
+
+
+class APIErrorException(Exception):
+    pass
+
+
+class TimeoutException(APIErrorException):
+    pass
+
+
+class InvalidResponseException(APIErrorException):
+    pass
+
+
+class MailGunEmailValidator(object):
+    def __init__(self, public_api_key):
+        self.api_key = public_api_key
+
+    def validate(self, email, timeout=10):
+        try:
+            response = requests.get("https://api.mailgun.net/v3/address/validate", params={'address': email},
+                                    auth=('api', self.api_key), timeout=timeout)
+        except requests.exceptions.Timeout:
+            raise TimeoutException
+        except requests.exceptions.RequestException as e:
+            raise APIErrorException("Exception occured during multiple email validation", e)
+        if response.status_code is not 200:
+            raise InvalidResponseException(response.text)
+        return response.json().get('is_valid')
+
+    def validate_all(self, emails, timeout=10):
+        try:
+            response = requests.get("https://api.mailgun.net/v3/address/parse", params={'addresses': ','.join(emails)},
+                                    auth=('api', self.api_key), timeout=timeout)
+        except requests.exceptions.Timeout:
+            raise TimeoutException
+        except requests.exceptions.RequestException as e:
+            raise APIErrorException("Exception occured during multiple email validation", e)
+        if response.status_code is not 200:
+            raise InvalidResponseException(response.text)
+        return [email for email in response.json().get('parsed', []) if self.validate(email)]
+
+
+    def suggest_alternative(self, email, timeout=10):
+        try:
+            response = requests.get("https://api.mailgun.net/v3/address/validate", params={'address': email},
+                                    auth=('api', self.api_key), timeout=timeout)
+        except requests.exceptions.Timeout:
+            raise TimeoutException
+        except requests.exceptions.RequestException as e:
+            raise APIErrorException(e)
+        if response.status_code is not 200:
+            raise InvalidResponseException(response.text)
+        return response.json().get('did_you_mean', None)

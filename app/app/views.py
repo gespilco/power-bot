@@ -48,6 +48,8 @@ class ValidateView(Resource):
     # - UA
     # - validate__transaction__time
     # - transaction__time
+    # - validate__mail
+    # - mail
     def get(self):
 
         transaction_key = "%s" % (''.join(choice(ascii_lowercase + digits) for _ in range(6)))
@@ -98,6 +100,16 @@ class ValidateView(Resource):
                 check__filter.delay(FILTERS__URL["transaction__time"], transaction_id, "transaction__time", {"transaction__time": transaction__time})
             except:
                 pass
+        validate__mail = request.args.get('validate__mail', 1)
+        try:
+            validate__mail = int(validate__mail)
+        except:
+            pass
+        mail = request.args.get('mail', '')
+        if validate__mail:
+            if mail != "":
+                filters = filters + 1
+                check__filter.delay(FILTERS__URL["mail"], transaction_id, "mail", {"mail": mail})
         table.update_one({
             'id': transaction_id
         }, {
@@ -218,3 +230,34 @@ class FiltersTransactionTimeView(Resource):
             "reason": "La transacción fue hecha en %s segundos" % transaction__time,
         }
         return render_to_json(context, 201)
+
+
+class FiltersMailView(Resource):
+    # - mail
+    def get(self):
+
+        mail = request.args.get('mail', '')
+        context = {
+            "success": False,
+        }
+        validator = MailGunEmailValidator(MAILGUN__PUBLIC__KEY)
+        try:
+            raw = validator.validate(mail)
+            if raw == False:
+                context = {
+                    "success": True,
+                    "raw": {
+                        "reason": "el e-mail no existe",
+                    }
+                }
+                return render_to_json(context, 201)
+            context["raw"] = {
+                "reason": "el e-mail existe",
+            }
+            return render_to_json(context, 201)
+        except:
+            pass
+        context = {
+            "success": False,
+        }
+        return render_to_json(context, 200)

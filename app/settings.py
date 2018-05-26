@@ -23,11 +23,13 @@ FILTERS__URL = {
     "IP": "http://0.0.0.0:5000/filters/IP/",
     "UA": "http://0.0.0.0:5000/filters/UA/",
     "transaction__time": "http://0.0.0.0:5000/filters/transaction__time/",
+    "mail": "http://0.0.0.0:5000/filters/mail/",
 }
 FILTERS__SCORE = {
     "IP": 30,
     "UA": 20,
     "transaction__time": 40,
+    "mail": 100,
 }
 
 
@@ -37,6 +39,7 @@ FILTERS__SCORE = {
 
 MONGO__DATABASE__SERVER = "127.0.0.1"
 MONGO__DATABASE__PORT = 27017
+MAILGUN__PUBLIC__KEY = "xxx"
 
 
 ##
