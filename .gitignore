@@ -13,3 +13,6 @@ databases/
 node_modules/
 .idea/
 .vagrant
+run.sh
+.ssh/
+*.pem

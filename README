@@ -2,9 +2,9 @@ Description
 -----------
 Here we have a method to validate a transaction.
 
-
 Methods
 -------
+URL: https://18.231.12.53
 GET: /validate/
 - mail
 - IP
