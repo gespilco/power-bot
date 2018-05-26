@@ -1,0 +1,12 @@
+Flask
+Flask-Mail
+Flask-RESTful
+gevent
+gunicorn
+ipython
+pymongo
+pyOpenSSL
+pytz
+requests[security]
+simplejson
+wheel
