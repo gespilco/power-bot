@@ -1,0 +1,11 @@
+Description
+-----------
+Here we have a method to validate a transaction.
+
+
+Methods
+-------
+GET: /validate/
+- mail
+- IP
+- CC
