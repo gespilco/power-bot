@@ -183,10 +183,38 @@ class FiltersUAView(Resource):
         if UA__parsed.is_bot:
             context = {
                "success": True,
-                "reason": "UA es %s, al parecer es un bot" % (UA),
+               "raw": {
+                   "reason": "UA es %s, al parecer es un bot" % (UA),
+               }
             }
             return render_to_json(context, 201)
         context["raw"] = {
-                "reason": "UA es %s, al parecer no es un bot" % (UA),
+            "reason": "UA es %s, al parecer no es un bot" % (UA),
+        }
+        return render_to_json(context, 201)
+
+
+class FiltersTransactionTimeView(Resource):
+    # - UA
+    def get(self):
+
+        transaction__time = request.args.get('transaction__time', '')
+        context = {
+            "success": False,
+        }
+        try:
+            transaction__time = int(transaction__time)
+        except:
+            context = {
+                "success": False,
+            }
+            return render_to_json(context, 200)
+        if transaction__time < 3: # a bot can do a buy in less than 3 seconds
+            context = {
+                "success": True,
+            }
+            return render_to_json(context, 201)
+        context["raw"] = {
+            "reason": "La transacción fue hecha en %s segundos" % transaction__time,
         }
         return render_to_json(context, 201)
