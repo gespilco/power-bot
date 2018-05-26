@@ -1,12 +1,15 @@
+celery[redis]
 Flask
 Flask-Mail
 Flask-RESTful
 gevent
 gunicorn
 ipython
+python-geoip
 pymongo
 pyOpenSSL
 pytz
 requests[security]
 simplejson
+user-agents
 wheel

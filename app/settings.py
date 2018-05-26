@@ -19,10 +19,18 @@ BUNDLE_ERRORS = True
 ##
 
 STAGE = 1
+FILTERS__URL = {
+    "IP": "http://0.0.0.0:5000/filters/IP/",
+    "UA": "http://0.0.0.0:5000/filters/UA/",
+}
+FILTERS__SCORE = {
+    "IP": 30,
+    "UA": 20,
+}
 
 
 ##
-## 
+## data
 ##
 
 MONGO__DATABASE__SERVER = "127.0.0.1"
@@ -37,3 +45,4 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
