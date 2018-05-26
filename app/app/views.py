@@ -9,6 +9,7 @@ from datetime import datetime
 from random import choice
 from string import ascii_lowercase
 from string import digits
+from time import sleep
 from user_agents import parse as ua__parse
 
 from settings import *
@@ -78,7 +79,7 @@ class ValidateView(Resource):
             if UA == "":
                 UA = getUA(request)
             filters = filters + 1
-            check__filter.delay(FILTERS__URL["UA"], transaction_id, "UA", {"A": UA})
+            check__filter.delay(FILTERS__URL["UA"], transaction_id, "UA", {"UA": UA})
         table.update_one({
             'id': transaction_id
         }, {
@@ -86,6 +87,17 @@ class ValidateView(Resource):
                 "total": filters,
             }
         }, upsert = False)
+        request__duration = 0
+        request__completed = False
+        while request__duration < 10 and not request__completed:
+            item = table.find_one({
+                "id": transaction_id,
+            })
+            if item["progress"] == item["total"]:
+                request__completed = True
+            if not request__completed:
+                request__duration = request__duration + 1            
+                sleep(1)
         item = table.find_one({
             "id": transaction_id,
         })
@@ -127,6 +139,7 @@ class FiltersIPView(Resource):
                "success": False,
             }
             return render_to_json(context, 200)
+
         if matchedIP.country != buyer__country:
             context = {
                "success": True,
